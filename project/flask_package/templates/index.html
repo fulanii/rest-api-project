@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Python, ProstgreSQL, Scraper Project</title>
+
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+
+
+    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" > -->
+    <link rel="stylesheet" href="static/css/style.css" >
+
+
+
+</head>
+
+
+<body>
+    <nav class="navbar navbar-expand-lg bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">Yassine Countries Info API Project</a> 
+        </div>
+    </nav>
+   
+
+    <section id="main-section">
+        
+
+        <div class="row main-row ">
+            <div class="overview-text col-lg-6">
+
+                <h1 class="overview">Overview </h1>
+
+                <p>The Countries Info API is a Rest API built in python with flask, I scraped countries info data like: <code> name, capital, population,  area</code> from <a href="https://www.scrapethissite.com/pages/simple/">Scrapethissite,</a> then saved them in a PostgreSQL database.</p>
+
+                <p>The api has 3 GET, 3 POST and 1 PUT enpoints, the POST endpoints can be used to add a country code, iso code, and fun fact. The PUT endpoint can be used to edit a country fun fact </p>
+
+                <br>
+
+                
+            </div>
+
+            <div class="col-lg-6 img-box">
+                <h1>Database Schema </h1>
+                <img class="api-img" src="{{ url_for('static', filename='images/db_schema.png') }}" alt="db_schema">
+            </div>
+        </div>
+
+        <details>
+            <summary class="endpoints"> Endpoints </summary>
+
+            <h3>All countries</h3>
+            <span> <code>GET http://127.0.0.1:5000/allcountries</code> </span>
+            <p class="text-muted" >Method: GET, param: /allcountries, return all the countries and their info from the database</p>
+
+            <br>
+
+            <h3>Number of countries</h3>
+            <span> <code>http://127.0.0.1:5000/getcountries/</code>  </span>
+            <p class="text-muted">return the number of countries passed in the request.</p>
+            <p class="text-muted" >Method: GET, param: getcountries/number, number:int</p>
+            <p class="text-muted">eg: bellow return 2 countries: http://127.0.0.1:5000/getcountries/2 </p>
+
+            <pre class="prettyprint lang-json">
+                [
+                    {
+                        "id": 1,
+                        "country_name": "Andorra",
+                        "country_capital": "Andorra la Vella",
+                        "contry_population": 84000,
+                        "country_area": 468.0,
+                        "country_code": 376,
+                        "iso_code": null
+                    },
+                    {
+                        "id": 2,
+                        "country_name": "United Arab Emirates",
+                        "country_capital": "Abu Dhabi",
+                        "contry_population": 4975593,
+                        "country_area": 82880.0,
+                        "country_code": 971,
+                        "iso_code": null
+                    }
+                ]
+            </pre>
+
+            <br>
+
+            <h3>Country info by name</h3>
+            <span> <code>http://127.0.0.1:5000/getcountry/</code> </span>
+            <p class="text-muted">return a country info using its name</p>
+            <p class="text-muted">Method: GET, param: getcountry/countryName: eg: getcountry/niger </p>
+            <p class="text-muted">eg: http://127.0.0.1:5000/getcountry/niger</p>
+            <pre class="prettyprint lang-json">
+                [
+                    {
+                        "id": 162,
+                        "country_name": "Niger",
+                        "country_capital": "Niamey",
+                        "contry_population": 15878271,
+                        "country_area": 1267000.0,
+                        "country_code": 227,
+                        "iso_code": "NE/NER"
+                    }
+                ]
+            </pre>
+
+            <br>
+
+            <h3>Add country code</h3>
+            <span><code>http://127.0.0.1:5000/add_country_code</code></span>
+            <p class="text-muted">Method: POST :param: required: country_name:string, country_code:int</p>
+            <p class="text-muted">eg: http://127.0.0.1:5000/add_country_code?country_name=armenia&country_code=374 </p>
+            <pre class="prettyprint lang-json">
+                [
+                    "success",
+                    {
+                        "id": 7,
+                        "country_name": "Armenia",
+                        "country_capital": "Yerevan",
+                        "contry_population": 2968000,
+                        "country_area": 29800.0,
+                        "country_code": 374,
+                        "iso_code": null
+                    }
+                ]
+            </pre>
+            <p>If the country code is alredy filled it returns: </p>
+            <pre  class="prettyprint lang-json">
+                [
+                    "Country code already filled",
+                    {
+                        "id": 7,
+                        "country_name": "Armenia",
+                        "country_capital": "Yerevan",
+                        "contry_population": 2968000,
+                        "country_area": 29800.0,
+                        "country_code": 374,
+                        "iso_code": null
+                    }
+                ]
+            </pre>
+
+            <br>
+
+            <h3>Add country iso code</h3>
+            <span><code>http://127.0.0.1:5000/add_country_iso_code</code></span>
+            <p class="text-muted"> Method: POST :param: required: country_name:string, iso_code:string</p>
+            <p class="text-muted">eg: http://127.0.0.1:5000/add_country_iso_code?country_name=Austria&iso_code=AT/AUT</p>
+            <pre class="prettyprint lang-json">
+                [
+                    "success",
+                    {
+                        "id": 12,
+                        "country_name": "Austria",
+                        "country_capital": "Vienna",
+                        "contry_population": 8205000,
+                        "country_area": 83858.0,
+                        "country_code": null,
+                        "iso_code": "AT/AUT"
+                    }
+                ]
+            </pre>
+            <p>If the country iso code is alredy filled it returns: </p>
+            <pre class="text-muted">
+                [
+                    "Country already has a funfact",
+                    {
+                        "id": 24,
+                        "country_name": "Burundi",
+                        "country_capital": "Bujumbura",
+                        "country_population": 9863117,
+                        "country_area": 27830.0,
+                        "country_code": null,
+                        "iso_code": null,
+                        "fun_fact": "Burundi one of the okest country hehe"
+                    }
+                ]
+            </pre>
+
+            <br>
+
+            <h3>Add country fun fact</h3>
+            <span><code>http://127.0.0.1:5000/add_fun_fact</code></span>
+            <p class="text-muted">Method: POST :param: required: country_name:string, fun_fact:string (max lenght 250)</p>
+            <p class="text-muted">eg: http://127.0.0.1:5000/add_fun_fact?country_name=Angola&fun_fact=At 105 metres high and 400 metres wide, the Kalandula waterfalls is a spectacular waterfall in Angola. It is Africas second largest waterfall, after Victoria falls. It’s a five hours drive from Luanda, in Malanje province.</p>
+            <pre class="prettyprint lang-json">
+                [
+                    "Success",
+                    {
+                        "id": 8,
+                        "country_name": "Angola",
+                        "country_capital": "Luanda",
+                        "country_population": 13068161,
+                        "country_area": 1246700.0,
+                        "country_code": null,
+                        "iso_code": null,
+                        "fun_fact": "At 105 metres high and 400 metres wide, the Kalandula waterfalls is a spectacular waterfall in Angola. It is Africas second largest waterfall, after Victoria falls. Its a five hours drive from Luanda, in Malanje province."
+                    }
+                ]
+            </pre>
+
+            <br>
+
+            <h3>Edit country fun fact</h3>
+            <span><code>http://127.0.0.1:5000/edit_fun_fact</code></span>
+            <p class="text-muted"> Method: PUT: :param: country_name:string, new_fun_fact:string (max lenght 250)</p>
+            <p class="text-muted">eg: http://127.0.0.1:5000/edit_fun_fact?country_name=Burundi&new_fun_fact=Burundi one of the okest country hehe</p>
+            <pre class="prettyprint lang-json">
+                {
+                    "SUCESS": {
+                        "Old fun fact": "Burundi one of the okest country hehe",
+                        "New fun fact": "Burundi is may fav country"
+                    }
+                }
+            </pre>
+        </details>
+
+
+    </section>
+
+
+
+
+
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+
+</body>
+</html>

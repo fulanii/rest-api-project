@@ -1,0 +1,55 @@
+
+
+
+body{
+    background-color: white;
+}
+
+#main-section{
+    /* border: solid; */
+    margin: 50px 100px 50px 100px;
+}
+
+/* pre.prettyprint{
+    border: 0;
+}  */
+code{
+    padding: .2em .4em;
+    margin: 0;
+    font-size: 85%;
+    background-color: rgb(175, 184, 193);
+    border-radius: 6px;
+    font-family: ui-monospace, SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace;
+    color: black;
+}
+.text-muted{
+    margin-bottom: 0;
+
+}
+a{
+    text-decoration: none;
+}
+.overview{
+    /* margin-left: 50px ; */
+    color: blue;
+}
+.overview-text{
+    /* margin-left: 50px; */
+    border-right: solid;
+    border-top: solid;
+    padding: 0;
+}
+.img-box{
+    border-top: solid;
+}
+.endpoints{
+    color: blue;
+    margin-bottom: 25px;
+    font-size: 25px;
+}
+.api-img{
+    width: 100%;
+}
+.main-row {
+    margin-bottom: 20px;
+}
