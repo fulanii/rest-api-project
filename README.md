@@ -10,9 +10,10 @@ Finally I made a country fun fact table where you can add a fun fact about any c
 
 # Project Demo 
 GET endpoints
-- ![GET](images/GET.gif)
-POST endpoints
-- ![POST](images/POST.gif)
+    ![GET](images/GET.gif)
+
+POST and PUT endpoints
+    ![POST](images/POST.gif)
 
 
 
