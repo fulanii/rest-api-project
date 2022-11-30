@@ -13,4 +13,11 @@ Finally I made a country fun fact table where you can add a fun fact about any c
 
 
 # Run locally
-Will be hosting this api online soon, in the meantime you can download it locally and run it
+Will be hosting this api online soon, in the meantime you can download it and run it locally by following the steps bellow.
+
+1. Clone the repo: ```$ git clone https://github.com/fulanii/rest-api-project.git```
+2. cd rest-api-project/project and ``` pip install requirements.txt```
+3. connect to a postgres db (replace ```database, user, and password``` fields)
+    ![](images/db.png)
+4. create the tables
+    - run server.py to create the tables, scrape and insert data
