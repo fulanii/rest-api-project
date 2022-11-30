@@ -8,12 +8,16 @@ Finally I made a country fun fact table where you can add a fun fact about any c
 - [Read More](https://fulanii.github.io/rest-api-project/)
 
 
-# Project Demo 
+
+<details>
+    <summary> <h1> Project Demo  </h1> </summary>
+
 GET endpoints
     ![GET](images/GET.gif)
 
 POST and PUT endpoints
     ![POST](images/POST.gif)
+</details>
 
 
 
