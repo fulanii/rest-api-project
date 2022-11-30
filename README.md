@@ -6,8 +6,6 @@ In this project i built a rest API with python and flask, I first scraped and cl
 Finally I made a country fun fact table where you can add a fun fact about any country using a ```POST```request, or edit/update the fun fact with a ```PUT``` request.
 
 
-<br>
-
 # Project Demo 
 
 
