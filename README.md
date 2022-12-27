@@ -35,3 +35,7 @@ Will be hosting this api online soon, in the meantime you can download it and ru
 
 5. check out the project [Documentation](https://fulanii.github.io/rest-api-project/)
 
+
+By the way i did this project in fastapi [check it out](https://github.com/fulanii/fastapi-project)
+
+
